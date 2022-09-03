@@ -1,6 +1,9 @@
 const slider = document.querySelector(`#slider`);
 const sliderItems = Array.from(slider.children);
 const btnNext = document.querySelector(`#btnNext`);
+const btnPrev = document.querySelector(`#btnPrev`);
+
+
 
 sliderItems.forEach((slide, index)=>{
 
@@ -56,13 +59,32 @@ btnNext.onclick = () => {
     nextSlide.classList.remove(`none`);
     nextSlide.setAttribute(`data-active`, '');
 
-    
+}
 
-    
-    
-    
-    
+
+btnPrev.onclick = () => {
+    const activeSlide = slider.querySelector(`[data-active]`);
+    const activeSlideIndex = +activeSlide.dataset.index;
+
+    activeSlide.classList.add('none');
+    activeSlide.removeAttribute(`data-active`);
+
+    let nextSlideIndex;
+
+    if(activeSlideIndex === 0){
+        nextSlideIndex = sliderItems.length - 1;
+    }else{
+        nextSlideIndex = activeSlideIndex - 1;
+    }
+
+    const nextSlide = slider.querySelector(`[data-index='${nextSlideIndex}']`);
+
+    nextSlide.classList.remove(`none`);
+    nextSlide.setAttribute(`data-active`, '');
+
+
    
 }
+
 
 
